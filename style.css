@@ -1,0 +1,288 @@
+/* --- Global & Theme Setup --- */
+body {
+    /* Theme color */
+    background-color: #fea6c3; 
+    /* Using 'Arimo' as a fallback general professional font */
+    font-family: 'Arimo', 'Open Sans', Arial, sans-serif; 
+    margin: 0;
+    padding: 20px 10px; 
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    min-height: 100vh; 
+    color: #333333; 
+}
+
+/* --- Header and Logo Styling --- */
+#logo {
+    width: 90px;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #880e4f; 
+    text-transform: uppercase;
+    letter-spacing: 3px; 
+    margin-bottom: 30px;
+    border-bottom: 3px solid #f48fb1; 
+    padding-bottom: 8px;
+    font-size: 2em;
+}
+
+/* Player Name Heading (H2) */
+.container h2 {
+    font-family: "BBH Sans Bogle", sans-serif;
+    font-weight: 400; 
+    font-size: 1.4em;
+    background-color: #defa41; /* Bright yellow background */
+    color: #212121; /* Dark text for contrast */
+    text-align: center; 
+    margin: 0 0 10px 0; 
+    padding: 5px 10px; /* Added padding to h2 */
+    border-radius: 5px; /* Subtle rounding for the heading */
+    display: block; 
+    /* FIX: Set a high z-index to ensure the h2 and its background are on top of the pattern */
+    z-index: 3; 
+    position: relative; 
+}
+
+/* --- Container Styling (Zigzag & Profile) --- */
+.container {
+    /* Base Card Color: Very subtle, warm off-white/cream */
+    background-color: #fffafb; 
+    font-family: "Josefin Sans", sans-serif;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+    margin: 25px 0; 
+    padding: 25px; 
+    width: 95%; 
+    max-width: 950px;
+    display: flex;
+    align-items: center; 
+    gap: 30px; 
+    box-sizing: border-box; 
+    border: 1px solid #f8bbd0; 
+    transition: all 0.3s ease;
+    
+    /* === PATTERN BACKGROUND ADDITION FIXES === */
+    position: relative; 
+    /* FIX: Set a low z-index for the container itself to create a new stacking context */
+    z-index: 1; 
+}
+
+/* Pattern Pseudo-Element */
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('pattern.png');
+    background-repeat: repeat;
+    background-size: cover; 
+    opacity: 0.7; 
+    border-radius: 15px; 
+    /* FIX: Set z-index lower than the content (p, img, h2) */
+    z-index: -1; 
+}
+
+.container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Zigzag Pattern Logic (for large screens) --- */
+.container:nth-child(odd) {
+    align-self: flex-start;
+}
+
+.container:nth-child(even) {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+/* --- Image Styling --- */
+.container img {
+    width: 200px; 
+    height: 200px; 
+    object-fit: cover; 
+    border-radius: 15px; 
+    border: 4px solid #f48fb1; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); 
+    transition: transform 0.3s ease-in-out; 
+    object-position: center; 
+    flex-shrink: 0; 
+    background-color: #c2c2c2;
+    /* FIX: Ensure image is clearly above the patterned layer */
+    z-index: 2; 
+}
+
+/* Specific styling for Mark Chapman's photo (Focus on top part) */
+.container img[src="mark-chapman.avif"] {
+    object-position: top; 
+}
+
+.container img:hover {
+    transform: scale(1.04); 
+    border-color: #880e4f; 
+    box-shadow: 0 0 8px #880e4f, 0 0 8px #880e4f;
+}
+
+/* --- Paragraph/List Styling --- */
+.container p {
+    flex-grow: 1; 
+    margin: 0;
+    padding: 0;
+    /* FIX: Ensure text/content block is clearly above the patterned layer */
+    z-index: 2; 
+    position: relative; /* Essential for z-index to work correctly on its children (h2) */
+}
+
+.container ul {
+    list-style: none; 
+    padding-left: 0;
+    margin: 0;
+}
+
+.container li {
+    padding: 8px 0;
+    line-height: 1.5;
+    font-size: 1.1em;
+    font-weight: 600;
+    position: relative;
+    padding-left: 25px; 
+}
+
+/* Custom Traditional Bullet Design */
+.container li::before {
+    content: '—'; 
+    color: #ff80ab; 
+    font-weight: bold;
+    font-size: 1.2em;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* --- Conclusion Section Styling --- */
+.conclusion {
+    background-color: #880e4f; 
+    color: #ffffff; 
+    padding: 30px;
+    margin-top: 50px;
+    border-radius: 20px;
+    width: 95%;
+    max-width: 1000px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.conclusion h2 {
+    font-family: "BBH Sans Bogle", sans-serif;
+    font-weight: 300; 
+    color: #ffe082; 
+    margin-top: 0;
+    font-size: 1.6em;
+    border-bottom: 2px solid #f48fb1;
+    padding-bottom: 10px;
+}
+
+.conclusion ul {
+    list-style: none; 
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 10px 20px; 
+    margin-bottom: 20px;
+}
+
+.conclusion li {
+    font-family: "Oswald", sans-serif;
+    background-color: #c51162; 
+    padding: 8px 15px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: background-color 0.2s;
+}
+
+.conclusion li:hover {
+    background-color: #d81b60; 
+}
+
+.conclusion p {
+    font-style: italic;
+    line-height: 1.6;
+    margin-top: 20px;
+    border-top: 1px dashed #f48fb1;
+    padding-top: 15px;
+    font-size: 1.05em;
+}
+
+
+/* --- Media Queries for Full Responsiveness --- */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.4em;
+        letter-spacing: 2px;
+    }
+
+    .container {
+        /* Reset zigzag and force stacked layout (Image always on top) */
+        flex-direction: column;
+        align-self: center; 
+        align-items: center;
+        width: 100%;
+        max-width: 450px; 
+        padding: 20px;
+        margin: 15px 0;
+        text-align: center;
+    }
+    .container::before{
+        opacity: 0.35;
+    }
+    .container li{
+        font-weight: bolder;
+        color: #880e4f;
+    }
+    /* Reset Zigzag layout for small screens */
+    .container:nth-child(odd),
+    .container:nth-child(even) {
+        flex-direction: column; /* Content stack: Image then text */
+        align-self: center;
+    }
+
+    .container img {
+        width: 150px; 
+        height: 150px;
+        margin-bottom: 15px; 
+    }
+    
+    .container ul {
+        text-align: left; 
+        width: 100%; 
+    }
+
+    .container li {
+        padding-left: 20px;
+    }
+    
+    .conclusion {
+        padding: 20px 10px;
+    }
+    
+    .conclusion ul {
+        gap: 10px 10px;
+    }
+
+    .conclusion li {
+        font-size: 1em;
+        padding: 6px 12px;
+    }
+}

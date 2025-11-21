@@ -1,2 +1,3 @@
 # Rajasthan-royals
-just a fun project
+Just a fun project
+
